@@ -21,7 +21,7 @@ class MyHomePage extends StatelessWidget {
     Transaction(
       id: 't1',
       title: 'New Headphones',
-      amount: 2000,
+      amount: 199.99,
       date: DateTime.now(),
     ),
     Transaction(
@@ -32,6 +32,11 @@ class MyHomePage extends StatelessWidget {
     ),
   ];
 
+  // String title;
+  // String amount;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +44,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Expenses App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -50,17 +55,67 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                    // onChanged: (v) {
+                    //   title = v;
+                    // },
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                    // onChanged: (v) {
+                    //   title = v;
+                    // },
+                  ),
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text('Add Transaction'),
+                    textColor: Colors.white,
+                    color: Colors.green,
+                  )
+                ],
+              ),
+            ),
+          ),
           Column(
             children: transactions.map((tx) {
               return Card(
                 child: Row(
+                  //color:Colors.yellow;
                   children: <Widget>[
                     Container(
-                      child: Text(tx.amount.toString()),
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15,
+                      ),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                        color: Colors.green,
+                        width: 2,
+                      )),
+                      padding: EdgeInsets.all(15),
+                      child: Text('\$${tx.amount}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.green,
+                          )),
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(tx.title),
+                        Text(
+                          tx.title,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
                         Text(tx.date.toString()),
                       ],
                     )
