@@ -13,9 +13,12 @@ class TransactionList extends StatelessWidget {
       child: transactions.isEmpty
           ? Column(
               children: [
-                Text('No transactions added yet!!!'),
+                Text(
+                  '!!! NO EXPENSES ADDED !!!',
+                  style: TextStyle(fontSize: 18, color: Colors.purple),
+                ),
                 SizedBox(
-                  height: 50,
+                  height: 40,
                 ),
                 Container(
                     height: 300,
@@ -43,7 +46,7 @@ class TransactionList extends StatelessWidget {
                         )),
                         padding: EdgeInsets.all(15),
                         child: Text(
-                            '\$${transactions[index].amount.toStringAsFixed(2)}',
+                            '₹ ${transactions[index].amount.toStringAsFixed(0)}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
@@ -56,10 +59,14 @@ class TransactionList extends StatelessWidget {
                           Text(
                             transactions[index].title,
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.purple),
                           ),
-                          Text(DateFormat.yMMMd()
-                              .format(transactions[index].date)),
+                          Text(
+                            DateFormat.yMMMd().format(transactions[index].date),
+                            style: TextStyle(color: Colors.purple[300]),
+                          ),
                         ],
                       )
                     ],

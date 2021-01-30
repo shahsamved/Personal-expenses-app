@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Expenses App',
       theme: ThemeData(
-        primarySwatch: Colors.green,
-        accentColor: Colors.teal,
+        primarySwatch: Colors.lightBlue,
+        accentColor: Colors.amber,
       ),
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: Colors.green,
+        backgroundColor: Colors.purple[300],
         title: Text('Personal Expenses'),
         actions: <Widget>[
           IconButton(
