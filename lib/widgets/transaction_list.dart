@@ -14,8 +14,11 @@ class TransactionList extends StatelessWidget {
           ? Column(
               children: [
                 Text(
-                  '!!! NO EXPENSES ADDED !!!',
-                  style: TextStyle(fontSize: 18, color: Colors.purple),
+                  '*** NO EXPENSES ADDED ***',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.purple,
+                      fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 40,
@@ -31,50 +34,42 @@ class TransactionList extends StatelessWidget {
           : ListView.builder(
               itemBuilder: (ctx, index) {
                 return Card(
-                  child: Row(
-                    //color:Colors.yellow;
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 15,
-                        ),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                          color: Theme.of(context).primaryColor,
-                          width: 2,
-                        )),
-                        padding: EdgeInsets.all(15),
-                        child: Text(
-                            '₹ ${transactions[index].amount.toStringAsFixed(0)}',
+                  elevation: 5,
+                  color: Colors.purple[50],
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.indigo,
+                      radius: 30,
+                      child: Padding(
+                        padding: EdgeInsets.all(6),
+                        child: FittedBox(
+                          child: Text(
+                            '₹${transactions[index].amount.toStringAsFixed(0)}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
-                              color: Theme.of(context).primaryColor,
-                            )),
+                              color: Colors.amber[100],
+                            ),
+                          ),
+                        ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            transactions[index].title,
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.purple),
-                          ),
-                          Text(
-                            DateFormat.yMMMd().format(transactions[index].date),
-                            style: TextStyle(color: Colors.purple[300]),
-                          ),
-                        ],
-                      )
-                    ],
+                    ),
+                    title: Text(
+                      transactions[index].title,
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                    subtitle: Text(
+                      DateFormat.yMMMd().format(transactions[index].date),
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 );
               },
               itemCount: transactions.length,
-              //children: transactions.map((tx) {
             ),
     );
   }
